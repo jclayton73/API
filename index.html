@@ -10,7 +10,7 @@
 			console.log("1 - request object created");
  
 			// Step 2: Set the URL for the AJAX request to be the JSON file
-			request.open("GET", "https://calapi.inadiutorium.cz/api/v0/en/calendars/general-en/today", true);
+			request.open("GET", "https://getfestivo.com/v1/holidays?api_key=16d76f27-22fb-4661-9496-f7d8ef7722df&country=US&year=2019", true);
 			console.log("2 - opened request file");
  
 			// Step 3: set up event handler/callback
@@ -24,9 +24,10 @@
 
 					result = request.responseText;
 					result = JSON.parse(result);
-					for(i in result.celebrations){
-						document.getElementById("data").innerHTML = "";
-						document.getElementById("data").innerHTML += result.celebrations[i].title;
+					document.getElementById("data").innerHTML = "";					
+					for(i in result.holidays.holidays){
+						x = result.holidays.holidays[i]
+						document.getElementById("data").innerHTML += x.name + ' ' + x.date + '<br>';
 					}
 					//document.getElementById("data").innerHTML ="current temp in boston: " + weather["main"]["temp"]; 
 					
@@ -55,10 +56,10 @@
 	<h1>In the Catholic Calender, today is...</h1>
 	<h2 id="data"></h2>
 
-	<p>The API I selected is for finding a date, in the Catholic Calendar, and describing the holidays celebrated on that day.</p>
-	<p>accessed from http://calapi.inadiutorium.cz/api-doc</p>
-	<p>I selected the general english calendar, and todays date</p>
-	<p>It would be helpful for a church website to highlight the next major Holiday, or a historian website </p>
+	<p>The API I selected finding holidays.</p>
+	<p>accessed from https://getfestivo.com/dashboard</p>
+	<p>I selected US holidays in 2019</p>
+	<p>It would be helpful for hotels to display upcoming holidays or airlines</p>
 
 </body>
 </html>
